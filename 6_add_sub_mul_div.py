@@ -1,3 +1,8 @@
+'''
+Problem Statement:
+Write a Python program to perform addition, subtraction, multiplication, and division on two images.
+'''
+
 import cv2
 import matplotlib.pyplot as plt
 
