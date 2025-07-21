@@ -1,6 +1,7 @@
 ''' 
 Problem Statement: 
-Given an image, this script load the image, convert it from 4D to 3D, print some pixel values, and display the image using matplotlib.
+Given an image, this script load the image, convert it from 4D to 3D, print some pixel values
+and display the image using matplotlib.
 '''
 
 import matplotlib.pyplot as plt
