@@ -1,6 +1,6 @@
 ''' 
 Problem statement: 
-Write a Python script that loads a grayscale image and performs the following transformations:
+Write a Python script that loads a rgb image and performs the following transformations:
 1. Load 2 images.
 2. Add the two images together.
 3. Display the original images and the resulting image.
