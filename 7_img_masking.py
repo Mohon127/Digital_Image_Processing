@@ -8,7 +8,7 @@ import cv2
 
 
 def main():
-    img_3D = cv2.imread("/home/mohon/4_1/cse4161/images/rgb_flower.png", cv2.IMREAD_COLOR)
+    img_3D = cv2.imread("/home/mohon/4_1/cse4161/images/rgb_flower.png")
 
     masking_area = 1000
     img_3D[:masking_area, :masking_area] = 0    
