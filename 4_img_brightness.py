@@ -13,7 +13,7 @@ import cv2
 def main():
     #===================== Load the image =========================
     img_path = "/home/mohon/4_1/cse4161/images/rgb_flower1.png"
-    img_3D = cv2.imread(img_path, cv2.IMREAD_COLOR)    
+    img_3D = cv2.imread(img_path)    
     img_rgb = cv2.cvtColor(img_3D, cv2.COLOR_BGR2RGB)
     constant = 50
 
