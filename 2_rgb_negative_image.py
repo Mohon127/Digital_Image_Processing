@@ -43,20 +43,12 @@ def main():
     plt.imshow(img_negative)
 
 
-
-
-
     plt.show()
     plt.close()
 
 
 
     
-
-
-
-
-
 if __name__ == '__main__': 
     main()
 
