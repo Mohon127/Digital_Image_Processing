@@ -1,3 +1,8 @@
+''''
+Problem Statement:
+Write a Python program to perform image masking on a 3D image. That is to say, set a specific area of the image to zero.   
+'''
+
 import matplotlib.pyplot as plt
 import cv2
 
