@@ -3,9 +3,8 @@ import cv2
 import numpy as np 
 
 def main():
-    img_3D = cv2.imread("/home/mohon/4_1/code/dip_code/images/rgb_flower1.png")
-
-    img_gray = cv2.cvtColor(img_3D, cv2.COLOR_BGR2GRAY)
+    img_gray = cv2.imread("/home/mohon/4_1/code/dip_code/images/rgb7.png", 0)
+   
     planes = []
     planes.append(img_gray)
 
@@ -28,7 +27,7 @@ def img_plane(img):
 def display(img_set):
     
     for i in range(len(img_set)):
-        plt.subplot(4,3, i+1)
+        plt.subplot(2,5, i+1)
         plt.imshow(img_set[i], cmap = 'gray')
         plt.axis('off')
     
