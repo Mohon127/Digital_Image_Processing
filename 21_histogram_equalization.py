@@ -10,12 +10,12 @@ import numpy as np
 import cv2
 
 
-#================= Execution workflow ==================================
+#================= Execution workflow ==============
 def main():
-    img_path = "/home/mohon/4_1/code/dip_code/images/runway.tif"
+    img_path = "/home/mohon/4_1/lab/dip_lab/images/runway.tif"
     img_gray = cv2.imread(img_path, 0)
 
-    #================= Histogram Equalization  ==========================
+    #================= Histogram Equalization Pipeline =================
     hist = histogram(img_gray)                     # Original histogram
     pdf = pdf_f(hist)                              # Probability density function
     cdf = cdf_f(pdf)                               # Cumulative distribution function
