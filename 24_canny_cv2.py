@@ -28,6 +28,7 @@ def main():
     display(img_set_2, img_title_2)
     display(img_set, img_title)
 
+#--------------------- Histogram Calculation ---------------------
 def histogram(img_2D):
     h, w = img_2D.shape
     hist = np.zeros(256, dtype=int)
@@ -40,7 +41,7 @@ def histogram(img_2D):
     return hist
 
 
-
+#--------------------- Display image ---------------------
 def display(img_set, img_title):
     for i in range(len(img_set)):
         
