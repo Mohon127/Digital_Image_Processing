@@ -71,18 +71,26 @@ def apply_clahe_variants(img_gray, clip_limits, tile_grid_size=(8, 8)):
         variants.append(enhanced)
     return variants
 
-
 #================= Visualization ===================
 def display_tiles(tiles, titles):
     n = len(tiles)
-    cols = 4
+    cols = 2
     rows = int(np.ceil(n / cols))
     plt.figure(figsize=(4 * cols, 3 * rows))
     for i, tile in enumerate(tiles):
         plt.subplot(rows, cols, i + 1)
-        plt.imshow(tile, cmap='gray')
-        plt.title(titles[i])
-        plt.axis('off')
+        if(tile.ndim == 2):   # image
+            
+            plt.imshow(tile, cmap='gray')
+            plt.title(titles[i])
+            plt.axis('off')
+        else: # histogram
+            plt.bar(range(256), tile)
+            plt.title(titles[i])
+            plt.xlim([0, 255])
+            plt.xlabel('Intensity Value')
+            plt.ylabel('Frequency')
+
     plt.tight_layout()
     plt.show()
 
@@ -99,11 +107,14 @@ def main():
     equalized_tiles = [equalize_tile(tile) for tile in tiles]
     manual_ahe = reconstruct_from_tiles(equalized_tiles, s, tile_h, tile_w)
 
+    display_tiles(tiles, [f'Original Tile {i+1}' for i in range(len(tiles))])
+
     operations = ['Linear', 'Gamma-correction', 'equalized_tiles']
 
     # Apply linear and non-linear operations on tiles
     for op in operations:
         processed_tiles = []
+        
         for tile in tiles:
             if op == 'Linear':
                 processed_tiles.append( cv2.add(tile, 20))
@@ -114,16 +125,31 @@ def main():
                 equalized_tile = equalize_tile(tile)
                 processed_tiles.append(equalized_tile)
 
+            
+
+
         display_tiles(processed_tiles, [f'{op} Tile {i+1}' for i in range(len(processed_tiles))])
+
+      
 
     # CLAHE with different clip limits
     clip_values = [40.0, 1.0, 2.0, 5.0, 10.0]
     clahe_variants = apply_clahe_variants(img_gray, clip_values)
 
-    # Rename last variant to "AHE (with bilinear)"
+    # histogram for all images (original + AHE + CLAHE variants)
+    histograms = []
+
+    for img in [img_gray, manual_ahe, *clahe_variants]:
+        hist = histogram(img)
+        histograms.append(hist)
+        
+
+
+    
     titles = ['Original', 'AHE'] + ['AHE (with bilinear)'] + [f'CLAHE clip={c}' for c in clip_values[1:]] 
 
     display_tiles([img_gray, manual_ahe] + clahe_variants, titles)
+    display_tiles(histograms, [t + ' Hist' for t in titles])
 
 
 if __name__ == '__main__':
